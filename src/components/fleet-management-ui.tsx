@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, X, Plus, HelpCircle, Info } from 'lucide-react';
+import { X, Plus, HelpCircle, Info } from 'lucide-react';
 
 // --- Define Interface for Car View Data ---
 interface CarView {
@@ -52,7 +52,7 @@ const FleetManagementDashboard = () => {
   ];
 
   // State declarations
-  const [title, setTitle] = useState("Virtual Asset Hyundai All-New INSTER");
+  const [title] = useState("Virtual Asset Hyundai All-New INSTER");
   const [selectedNavItem, setSelectedNavItem] = useState("Images");
   const [selectedViews, setSelectedViews] = useState<number[]>([]);
   const [carViews, setCarViews] = useState<CarView[]>(initialCarViews);
@@ -248,40 +248,121 @@ const FleetManagementDashboard = () => {
   };
   // --- End Preview Handler ---
 
-  const handleSaveImage = () => {
-    if (!newImageAngle || !newImageColor || !newImageTrim || !newImageName) {
-      alert("Please fill in all fields.");
-      return;
+  // --- Add state for Image Bank search results and selection ---
+  const [imageBankResults, setImageBankResults] = useState<CarView[]>([]);
+  const [selectedImageBankItems, setSelectedImageBankItems] = useState<number[]>([]);
+  // --- End of Image Bank state ---
+
+  // --- Add Image Bank search handler ---
+  const handleImageBankSearch = () => {
+    // In a real application, this would be an API call
+    // For now, we'll simulate results based on the filters
+    const results: CarView[] = [
+      {
+        id: 1001,
+        name: "Front View",
+        angle: imageBankFilters.angle || "0° (Front)",
+        color: imageBankFilters.color || "Red",
+        trim: imageBankFilters.variant || "Standard",
+        viewType: "Front View",
+        letter: "F",
+        order: 1
+      },
+      {
+        id: 1002,
+        name: "Side View",
+        angle: imageBankFilters.angle || "90° (Side)",
+        color: imageBankFilters.color || "Red",
+        trim: imageBankFilters.variant || "Standard",
+        viewType: "Side View",
+        letter: "S",
+        order: 2
+      },
+      {
+        id: 1003,
+        name: "Rear View",
+        angle: imageBankFilters.angle || "180° (Rear)",
+        color: imageBankFilters.color || "Red",
+        trim: imageBankFilters.variant || "Standard",
+        viewType: "Rear View",
+        letter: "R",
+        order: 3
+      }
+    ];
+
+    setImageBankResults(results);
+    setSelectedImageBankItems([]);
+  };
+  // --- End of Image Bank search handler ---
+
+  // --- Add Image Bank selection handler ---
+  const toggleImageBankSelection = (viewId: number) => {
+    if (selectedImageBankItems.includes(viewId)) {
+      setSelectedImageBankItems(selectedImageBankItems.filter(id => id !== viewId));
+    } else {
+      setSelectedImageBankItems([...selectedImageBankItems, viewId]);
     }
+  };
+  // --- End of Image Bank selection handler ---
 
-    const { viewType, letter } = determineViewDetails(newImageAngle); // Use helper function
+  // --- Modify handleSaveImage to handle multiple selections ---
+  const handleSaveImage = () => {
+    if (activeTab === 'imagine') {
+      if (!newImageAngle || !newImageColor || !newImageTrim || !newImageName) {
+        alert("Please fill in all fields.");
+        return;
+      }
 
-    const newId = Math.max(0, ...carViews.map(v => v.id)) + 1;
-    const newOrder = Math.max(0, ...carViews.filter(v => v.color === newImageColor).map(v => v.order)) + 1;
+      const { viewType, letter } = determineViewDetails(newImageAngle);
+      const newId = Math.max(0, ...carViews.map(v => v.id)) + 1;
+      const newOrder = Math.max(0, ...carViews.filter(v => v.color === newImageColor).map(v => v.order)) + 1;
 
-    const newVehicle: CarView = {
-      id: newId,
-      name: newImageName,
-      angle: newImageAngle,
-      color: newImageColor,
-      trim: newImageTrim,
-      viewType: viewType,
-      letter: letter,
-      order: newOrder,
-    };
+      const newVehicle: CarView = {
+        id: newId,
+        name: newImageName,
+        angle: newImageAngle,
+        color: newImageColor,
+        trim: newImageTrim,
+        viewType: viewType,
+        letter: letter,
+        order: newOrder,
+      };
 
-    const updatedViews = [...carViews, newVehicle].sort((a, b) => {
+      const updatedViews = [...carViews, newVehicle].sort((a, b) => {
         if (a.color === b.color) {
           return a.order - b.order;
         }
         return a.color.localeCompare(b.color);
-     });
+      });
 
-    setCarViews(updatedViews);
+      setCarViews(updatedViews);
+    } else if (activeTab === 'bank' && selectedImageBankItems.length > 0) {
+      const selectedItems = imageBankResults.filter(item => selectedImageBankItems.includes(item.id));
+      const newViews = selectedItems.map(item => {
+        const newId = Math.max(0, ...carViews.map(v => v.id)) + 1;
+        const newOrder = Math.max(0, ...carViews.filter(v => v.color === item.color).map(v => v.order)) + 1;
+        return {
+          ...item,
+          id: newId,
+          order: newOrder,
+        };
+      });
+
+      const updatedViews = [...carViews, ...newViews].sort((a, b) => {
+        if (a.color === b.color) {
+          return a.order - b.order;
+        }
+        return a.color.localeCompare(b.color);
+      });
+
+      setCarViews(updatedViews);
+    }
+
     setShowAddModal(false);
-    setPreviewData(null); // Reset preview on save
+    setPreviewData(null);
+    setSelectedImageBankItems([]);
   };
-  // --- End of Modal Handlers ---
+  // --- End of modified handleSaveImage ---
 
   // --- Add Image Bank filter handler ---
   const handleImageBankFilterChange = (filterType: keyof typeof imageBankFilters, value: string) => {
@@ -574,18 +655,16 @@ const FleetManagementDashboard = () => {
                         </svg>
                       </div>
                     )}
-                    <div className="h-40 bg-gray-100 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className={`w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center 
-                          ${view.color === "Red" ? "bg-red-600 text-white" : 
-                            view.color === "Green" ? "bg-green-600 text-white" : 
-                            view.color === "Blue" ? "bg-blue-600 text-white" : 
-                            "bg-indigo-100 text-indigo-600"}`}
-                        >
-                          <span className="text-xl">{view.letter}</span>
-                        </div>
-                        <div className="text-sm text-gray-500">{view.viewType}</div>
+                    <div className="h-40 bg-gray-100 flex flex-col items-center justify-center">
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center 
+                        ${view.color === "Red" ? "bg-red-600 text-white" : 
+                          view.color === "Green" ? "bg-green-600 text-white" : 
+                          view.color === "Blue" ? "bg-blue-600 text-white" : 
+                          "bg-indigo-100 text-indigo-600"}`}
+                      >
+                        <span className="text-xl">{view.letter}</span>
                       </div>
+                      <div className="text-sm text-gray-500 mt-2">{view.viewType}</div>
                     </div>
                     <div className="p-3 space-y-1">
                       <p className="text-sm"><span className="font-medium">Name:</span> {view.name}</p>
@@ -744,8 +823,8 @@ const FleetManagementDashboard = () => {
                     <div className="mt-4 h-48 border border-dashed border-gray-300 rounded-md flex items-center justify-center bg-gray-50">
                       {previewData ? (
                         // Render preview similar to main list item
-                        <div className="text-center">
-                          <div className={`w-16 h-16 mx-auto mb-2 rounded-full flex items-center justify-center
+                        <div className="flex flex-col items-center">
+                          <div className={`w-16 h-16 rounded-full flex items-center justify-center
                             ${previewData.color === "Red" ? "bg-red-600 text-white" :
                               previewData.color === "Green" ? "bg-green-600 text-white" :
                               previewData.color === "Blue" ? "bg-blue-600 text-white" :
@@ -753,7 +832,7 @@ const FleetManagementDashboard = () => {
                           >
                             <span className="text-xl">{previewData.letter}</span>
                           </div>
-                          <div className="text-sm text-gray-500">{previewData.viewType}</div>
+                          <div className="text-sm text-gray-500 mt-2">{previewData.viewType}</div>
                         </div>
                       ) : (
                         <p className="text-gray-400 text-sm">Preview will appear here</p>
@@ -846,6 +925,7 @@ const FleetManagementDashboard = () => {
                       <div>
                         <button
                           type="button"
+                          onClick={handleImageBankSearch}
                           className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                           Search
@@ -854,8 +934,49 @@ const FleetManagementDashboard = () => {
                     </div>
 
                     {/* Results area */}
-                    <div className="mt-6 text-center text-gray-500">
-                      Search results will appear here
+                    <div className="mt-6">
+                      {imageBankResults.length > 0 ? (
+                        <div className="flex flex-wrap gap-6">
+                          {imageBankResults.map((view) => (
+                            <div 
+                              key={view.id}
+                              className={`border rounded-md overflow-hidden w-64 relative cursor-pointer transition-all ${
+                                selectedImageBankItems.includes(view.id) ? 'border-indigo-600 shadow-md' : 'hover:border-gray-300'
+                              }`}
+                              onClick={() => toggleImageBankSelection(view.id)}
+                            >
+                              {selectedImageBankItems.includes(view.id) && (
+                                <div className="absolute top-2 right-2 z-10 w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center">
+                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                                  </svg>
+                                </div>
+                              )}
+                              <div className="h-40 bg-gray-100 flex flex-col items-center justify-center">
+                                <div className={`w-16 h-16 rounded-full flex items-center justify-center 
+                                  ${view.color === "Red" ? "bg-red-600 text-white" : 
+                                    view.color === "Green" ? "bg-green-600 text-white" : 
+                                    view.color === "Blue" ? "bg-blue-600 text-white" : 
+                                    "bg-indigo-100 text-indigo-600"}`}
+                                >
+                                  <span className="text-xl">{view.letter}</span>
+                                </div>
+                                <div className="text-sm text-gray-500 mt-2">{view.viewType}</div>
+                              </div>
+                              <div className="p-3 space-y-1">
+                                <p className="text-sm"><span className="font-medium">Name:</span> {view.name}</p>
+                                <p className="text-sm"><span className="font-medium">Angle:</span> {view.angle}</p>
+                                <p className="text-sm"><span className="font-medium">Color:</span> {view.color}</p>
+                                <p className="text-sm"><span className="font-medium">Trim:</span> {view.trim}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center text-gray-500">
+                          {imageBankResults.length === 0 ? "Search results will appear here" : "No results found"}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
