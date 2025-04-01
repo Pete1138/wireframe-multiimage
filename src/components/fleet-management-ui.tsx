@@ -11,8 +11,9 @@ interface CarView {
   viewType: string;
   letter: string;
   order: number;
+  createdDate: string;
 }
-// --- End Interface Definition ----
+// --- End Interface Definition ---
 
 // --- Define Interface for Preview Data (Subset of CarView) ---
 interface PreviewData {
@@ -27,28 +28,28 @@ const FleetManagementDashboard = () => {
   // Initial car views data
   const initialCarViews: CarView[] = [
     // Red vehicles
-    { id: 1, name: "View 1", angle: "0° (Front)", color: "Red", trim: "Sport", viewType: "Front View", letter: "F", order: 1 },
-    { id: 2, name: "View 2", angle: "90° (Side)", color: "Red", trim: "Sport", viewType: "Side View", letter: "S", order: 2 },
-    { id: 3, name: "View 3", angle: "180° (Rear)", color: "Red", trim: "Sport", viewType: "Rear View", letter: "R", order: 3 },
-    { id: 4, name: "View 4", angle: "Top View", color: "Red", trim: "Sport", viewType: "Top View", letter: "T", order: 4 },
-    { id: 5, name: "View 5", angle: "45° (3/4 Front)", color: "Red", trim: "Sport", viewType: "3/4 Front View", letter: "3F", order: 5 },
-    { id: 6, name: "View 6", angle: "135° (3/4 Rear)", color: "Red", trim: "Sport", viewType: "3/4 Rear View", letter: "3R", order: 6 },
+    { id: 1, name: "View 1", angle: "0° (Front)", color: "Red", trim: "Sport", viewType: "Front View", letter: "F", order: 1, createdDate: "01/01/2000" },
+    { id: 2, name: "View 2", angle: "90° (Side)", color: "Red", trim: "Sport", viewType: "Side View", letter: "S", order: 2, createdDate: "01/01/2000" },
+    { id: 3, name: "View 3", angle: "180° (Rear)", color: "Red", trim: "Sport", viewType: "Rear View", letter: "R", order: 3, createdDate: "01/01/2000" },
+    { id: 4, name: "View 4", angle: "Top View", color: "Red", trim: "Sport", viewType: "Top View", letter: "T", order: 4, createdDate: "01/01/2000" },
+    { id: 5, name: "View 5", angle: "45° (3/4 Front)", color: "Red", trim: "Sport", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "01/01/2000" },
+    { id: 6, name: "View 6", angle: "135° (3/4 Rear)", color: "Red", trim: "Sport", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "01/01/2000" },
     
     // Green vehicles
-    { id: 7, name: "View 1", angle: "0° (Front)", color: "Green", trim: "Luxury", viewType: "Front View", letter: "F", order: 1 },
-    { id: 8, name: "View 2", angle: "90° (Side)", color: "Green", trim: "Luxury", viewType: "Side View", letter: "S", order: 2 },
-    { id: 9, name: "View 3", angle: "180° (Rear)", color: "Green", trim: "Luxury", viewType: "Rear View", letter: "R", order: 3 },
-    { id: 10, name: "View 4", angle: "Top View", color: "Green", trim: "Luxury", viewType: "Top View", letter: "T", order: 4 },
-    { id: 11, name: "View 5", angle: "45° (3/4 Front)", color: "Green", trim: "Luxury", viewType: "3/4 Front View", letter: "3F", order: 5 },
-    { id: 12, name: "View 6", angle: "135° (3/4 Rear)", color: "Green", trim: "Luxury", viewType: "3/4 Rear View", letter: "3R", order: 6 },
+    { id: 7, name: "View 1", angle: "0° (Front)", color: "Green", trim: "Luxury", viewType: "Front View", letter: "F", order: 1, createdDate: "02/02/2000" },
+    { id: 8, name: "View 2", angle: "90° (Side)", color: "Green", trim: "Luxury", viewType: "Side View", letter: "S", order: 2, createdDate: "02/02/2000" },
+    { id: 9, name: "View 3", angle: "180° (Rear)", color: "Green", trim: "Luxury", viewType: "Rear View", letter: "R", order: 3, createdDate: "02/02/2000" },
+    { id: 10, name: "View 4", angle: "Top View", color: "Green", trim: "Luxury", viewType: "Top View", letter: "T", order: 4, createdDate: "02/02/2000" },
+    { id: 11, name: "View 5", angle: "45° (3/4 Front)", color: "Green", trim: "Luxury", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "02/02/2000" },
+    { id: 12, name: "View 6", angle: "135° (3/4 Rear)", color: "Green", trim: "Luxury", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "02/02/2000" },
     
     // Blue vehicles
-    { id: 13, name: "View 1", angle: "0° (Front)", color: "Blue", trim: "Premium", viewType: "Front View", letter: "F", order: 1 },
-    { id: 14, name: "View 2", angle: "90° (Side)", color: "Blue", trim: "Premium", viewType: "Side View", letter: "S", order: 2 },
-    { id: 15, name: "View 3", angle: "180° (Rear)", color: "Blue", trim: "Premium", viewType: "Rear View", letter: "R", order: 3 },
-    { id: 16, name: "View 4", angle: "Top View", color: "Blue", trim: "Premium", viewType: "Top View", letter: "T", order: 4 },
-    { id: 17, name: "View 5", angle: "45° (3/4 Front)", color: "Blue", trim: "Premium", viewType: "3/4 Front View", letter: "3F", order: 5 },
-    { id: 18, name: "View 6", angle: "135° (3/4 Rear)", color: "Blue", trim: "Premium", viewType: "3/4 Rear View", letter: "3R", order: 6 }
+    { id: 13, name: "View 1", angle: "0° (Front)", color: "Blue", trim: "Premium", viewType: "Front View", letter: "F", order: 1, createdDate: "03/03/2000" },
+    { id: 14, name: "View 2", angle: "90° (Side)", color: "Blue", trim: "Premium", viewType: "Side View", letter: "S", order: 2, createdDate: "03/03/2000" },
+    { id: 15, name: "View 3", angle: "180° (Rear)", color: "Blue", trim: "Premium", viewType: "Rear View", letter: "R", order: 3, createdDate: "03/03/2000" },
+    { id: 16, name: "View 4", angle: "Top View", color: "Blue", trim: "Premium", viewType: "Top View", letter: "T", order: 4, createdDate: "03/03/2000" },
+    { id: 17, name: "View 5", angle: "45° (3/4 Front)", color: "Blue", trim: "Premium", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "03/03/2000" },
+    { id: 18, name: "View 6", angle: "135° (3/4 Rear)", color: "Blue", trim: "Premium", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "03/03/2000" }
   ];
 
   // State declarations
@@ -68,8 +69,7 @@ const FleetManagementDashboard = () => {
   const [newImageAngle, setNewImageAngle] = useState('');
   const [newImageColor, setNewImageColor] = useState('');
   const [newImageTrim, setNewImageTrim] = useState('');
-  const [newImageName, setNewImageName] = useState('');
-  const [previewData, setPreviewData] = useState<PreviewData | null>(null); // State for preview
+  const [previewData, setPreviewData] = useState<PreviewData | null>(null);
   // --- End of new state ---
 
   // --- Add state for Image Bank filters ---
@@ -103,19 +103,48 @@ const FleetManagementDashboard = () => {
   const modalColorOptions = [...new Set(initialCarViews.map(view => view.color))];
   const modalTrimOptions = [...new Set(initialCarViews.map(view => view.trim))];
   
-  // Filter the car views based on selected filters
+  // Add sort state
+  const [sortBy, setSortBy] = useState<'createdDate' | 'angle' | 'color' | 'trim'>('createdDate');
+  const [sortDirection, setSortDirection] = useState<'ASC' | 'DESC'>('ASC');
+
+  // Modify the filteredCarViews to include sorting
   const filteredCarViews = carViews.filter(view => {
     if (filters.angle && view.angle !== filters.angle) return false;
     if (filters.color && view.color !== filters.color) return false;
     if (filters.trim && view.trim !== filters.trim) return false;
     return true;
   }).sort((a, b) => {
-    // Sort by order within color groups
-    if (a.color === b.color) {
-      return a.order - b.order;
+    // First sort by the selected sort field
+    let comparison = 0;
+    switch (sortBy) {
+      case 'createdDate':
+        comparison = new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime();
+        break;
+      case 'angle':
+        comparison = a.angle.localeCompare(b.angle);
+        break;
+      case 'color':
+        comparison = a.color.localeCompare(b.color);
+        break;
+      case 'trim':
+        comparison = a.trim.localeCompare(b.trim);
+        break;
     }
-    // Otherwise sort by color
-    return a.color.localeCompare(b.color);
+    
+    // Apply sort direction
+    if (sortDirection === 'DESC') {
+      comparison = -comparison;
+    }
+    
+    // If the sort field values are equal, maintain the original order within color groups
+    if (comparison === 0) {
+      if (a.color === b.color) {
+        return a.order - b.order;
+      }
+      return a.color.localeCompare(b.color);
+    }
+    
+    return comparison;
   });
   
   // Event handlers
@@ -206,8 +235,7 @@ const FleetManagementDashboard = () => {
     setNewImageAngle(modalAngleOptions[0] || '');
     setNewImageColor('');
     setNewImageTrim('');
-    setNewImageName('');
-    setPreviewData(null); // Reset preview on open
+    setPreviewData(null);
   };
 
   const handleOpenAddModal = () => {
@@ -217,7 +245,7 @@ const FleetManagementDashboard = () => {
 
   const handleCancelAddModal = () => {
     setShowAddModal(false);
-    setPreviewData(null); // Reset preview on close
+    setPreviewData(null);
   };
 
   // Function to determine viewType and letter (reusable)
@@ -266,7 +294,8 @@ const FleetManagementDashboard = () => {
         trim: imageBankFilters.variant || "Standard",
         viewType: "Front View",
         letter: "F",
-        order: 1
+        order: 1,
+        createdDate: "01/01/2000"
       },
       {
         id: 1002,
@@ -276,7 +305,8 @@ const FleetManagementDashboard = () => {
         trim: imageBankFilters.variant || "Standard",
         viewType: "Side View",
         letter: "S",
-        order: 2
+        order: 2,
+        createdDate: "01/01/2000"
       },
       {
         id: 1003,
@@ -286,7 +316,8 @@ const FleetManagementDashboard = () => {
         trim: imageBankFilters.variant || "Standard",
         viewType: "Rear View",
         letter: "R",
-        order: 3
+        order: 3,
+        createdDate: "01/01/2000"
       }
     ];
 
@@ -308,7 +339,7 @@ const FleetManagementDashboard = () => {
   // --- Modify handleSaveImage to handle multiple selections ---
   const handleSaveImage = () => {
     if (activeTab === 'imagine') {
-      if (!newImageAngle || !newImageColor || !newImageTrim || !newImageName) {
+      if (!newImageAngle || !newImageColor || !newImageTrim) {
         alert("Please fill in all fields.");
         return;
       }
@@ -319,13 +350,14 @@ const FleetManagementDashboard = () => {
 
       const newVehicle: CarView = {
         id: newId,
-        name: newImageName,
+        name: viewType,
         angle: newImageAngle,
         color: newImageColor,
         trim: newImageTrim,
         viewType: viewType,
         letter: letter,
         order: newOrder,
+        createdDate: "01/01/2000"
       };
 
       const updatedViews = [...carViews, newVehicle].sort((a, b) => {
@@ -345,6 +377,7 @@ const FleetManagementDashboard = () => {
           ...item,
           id: newId,
           order: newOrder,
+          createdDate: "01/01/2000"
         };
       });
 
@@ -376,6 +409,34 @@ const FleetManagementDashboard = () => {
   // --- Add state for active tab ---
   const [activeTab, setActiveTab] = useState<'imagine' | 'bank'>('imagine');
   // --- End of active tab state ---
+
+  // --- Add state for default vehicles ---
+  const [defaultVehicles, setDefaultVehicles] = useState<{ [key: string]: number }>(() => {
+    // Create an object to store the first vehicle ID for each color
+    const defaults: { [key: string]: number } = {};
+    // Group vehicles by color and get the first one of each color
+    initialCarViews.forEach(view => {
+      if (!defaults[view.color]) {
+        defaults[view.color] = view.id;
+      }
+    });
+    return defaults;
+  });
+  // --- End of default vehicles state ---
+
+  // --- Add handler for making a vehicle default ---
+  const handleMakeDefault = () => {
+    if (selectedViews.length === 1) {
+      const selectedVehicle = carViews.find(v => v.id === selectedViews[0]);
+      if (selectedVehicle) {
+        setDefaultVehicles(prev => ({
+          ...prev,
+          [selectedVehicle.color]: selectedVehicle.id
+        }));
+      }
+    }
+  };
+  // --- End of make default handler ---
 
   // Navigation sidebar items
   const navItems = [
@@ -527,6 +588,14 @@ const FleetManagementDashboard = () => {
             <div className="p-4 border-b flex justify-between items-center">
               <h2 className="text-xl font-medium">Virtual Asset Images - Hyundai All-New INSTER</h2>
               <div className="flex space-x-3">
+                {selectedViews.length === 1 && (
+                  <button 
+                    onClick={handleMakeDefault}
+                    className="px-3 py-2 bg-blue-100 text-blue-800 rounded-md text-sm hover:bg-blue-200 transition-colors flex items-center"
+                  >
+                    Make Default for Color
+                  </button>
+                )}
                 {selectedViews.length > 0 && (
                   <button 
                     onClick={handleDeleteSelected}
@@ -547,74 +616,106 @@ const FleetManagementDashboard = () => {
             </div>
             <div className="p-6">
               {/* Filter controls */}
-              <div className="mb-6 flex flex-wrap gap-4">
-                <div className="flex flex-col">
-                  <label className="text-sm text-gray-600 mb-1">Angle</label>
-                  <select 
-                    className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    value={filters.angle}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleFilterChange("angle", e.target.value)}
-                  >
-                    <option value="">All Angles</option>
-                    {angleOptions.filter(option => option !== "").map(angle => (
-                      <option key={angle} value={angle}>{angle}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div className="flex flex-col">
-                  <label className="text-sm text-gray-600 mb-1 flex items-center">
-                    Color
-                    <div className="relative group ml-1">
-                      <div className="text-gray-400 cursor-help">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-                          <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                      </div>
-                      <div className="absolute bottom-full left-0 mb-2 w-60 bg-gray-800 text-white text-xs rounded p-2 shadow-lg whitespace-normal z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                        Filter by Color only to set the image order
-                        <div className="absolute left-2 top-full w-3 h-3 -mt-1.5 bg-gray-800 transform rotate-45"></div>
-                      </div>
-                    </div>
-                  </label>
-                  <select 
-                    className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    value={filters.color}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleFilterChange("color", e.target.value)}
-                  >
-                    <option value="">All Colors</option>
-                    {colorOptions.filter(option => option !== "").map(color => (
-                      <option key={color} value={color}>{color}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                <div className="flex flex-col">
-                  <label className="text-sm text-gray-600 mb-1">Trim</label>
-                  <select 
-                    className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    value={filters.trim}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleFilterChange("trim", e.target.value)}
-                  >
-                    <option value="">All Trims</option>
-                    {trimOptions.filter(option => option !== "").map(trim => (
-                      <option key={trim} value={trim}>{trim}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                {(filters.angle || filters.color || filters.trim) && (
-                  <div className="flex items-end">
-                    <button 
-                      onClick={() => setFilters({ angle: "", color: "", trim: "" })}
-                      className="text-sm text-indigo-600 px-2 py-1.5 border border-indigo-200 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors flex items-center"
+              <div className="mb-6 flex flex-wrap justify-between gap-4">
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-col">
+                    <label className="text-sm text-gray-600 mb-1">Angle</label>
+                    <select 
+                      className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      value={filters.angle}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleFilterChange("angle", e.target.value)}
                     >
-                      <X className="w-4 h-4 mr-1" />
-                      Clear Filters
-                    </button>
+                      <option value="">All Angles</option>
+                      {angleOptions.filter(option => option !== "").map(angle => (
+                        <option key={angle} value={angle}>{angle}</option>
+                      ))}
+                    </select>
                   </div>
-                )}
+                  
+                  <div className="flex flex-col">
+                    <label className="text-sm text-gray-600 mb-1 flex items-center">
+                      Color
+                      <div className="relative group ml-1">
+                        <div className="text-gray-400 cursor-help">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+                            <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                          </svg>
+                        </div>
+                        <div className="absolute bottom-full left-0 mb-2 w-60 bg-gray-800 text-white text-xs rounded p-2 shadow-lg whitespace-normal z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                          Filter by Color only to set the image order
+                          <div className="absolute left-2 top-full w-3 h-3 -mt-1.5 bg-gray-800 transform rotate-45"></div>
+                        </div>
+                      </div>
+                    </label>
+                    <select 
+                      className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      value={filters.color}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleFilterChange("color", e.target.value)}
+                    >
+                      <option value="">All Colors</option>
+                      {colorOptions.filter(option => option !== "").map(color => (
+                        <option key={color} value={color}>{color}</option>
+                      ))}
+                    </select>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <label className="text-sm text-gray-600 mb-1">Trim</label>
+                    <select 
+                      className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      value={filters.trim}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleFilterChange("trim", e.target.value)}
+                    >
+                      <option value="">All Trims</option>
+                      {trimOptions.filter(option => option !== "").map(trim => (
+                        <option key={trim} value={trim}>{trim}</option>
+                      ))}
+                    </select>
+                  </div>
+                  
+                  {(filters.angle || filters.color || filters.trim) && (
+                    <div className="flex items-end">
+                      <button 
+                        onClick={() => setFilters({ angle: "", color: "", trim: "" })}
+                        className="text-sm text-indigo-600 px-2 py-1.5 border border-indigo-200 bg-indigo-50 rounded-md hover:bg-indigo-100 transition-colors flex items-center"
+                      >
+                        <X className="w-4 h-4 mr-1" />
+                        Clear Filters
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-4">
+                  {/* Sort By Dropdown */}
+                  <div className="flex flex-col">
+                    <label className="text-sm text-gray-600 mb-1">Sort By</label>
+                    <select 
+                      className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      value={sortBy}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSortBy(e.target.value as 'createdDate' | 'angle' | 'color' | 'trim')}
+                    >
+                      <option value="createdDate">Created Date</option>
+                      <option value="angle">Angle</option>
+                      <option value="color">Color</option>
+                      <option value="trim">Trim</option>
+                    </select>
+                  </div>
+
+                  {/* Sort Direction Dropdown */}
+                  <div className="flex flex-col">
+                    <label className="text-sm text-gray-600 mb-1">Direction</label>
+                    <select 
+                      className="border border-gray-300 rounded-md px-3 py-1.5 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      value={sortDirection}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSortDirection(e.target.value as 'ASC' | 'DESC')}
+                    >
+                      <option value="ASC">Ascending</option>
+                      <option value="DESC">Descending</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               
               {/* Filter status message */}
@@ -655,7 +756,7 @@ const FleetManagementDashboard = () => {
                         </svg>
                       </div>
                     )}
-                    <div className="h-40 bg-gray-100 flex flex-col items-center justify-center">
+                    <div className="h-40 bg-gray-100 flex flex-col items-center justify-center relative">
                       <div className={`w-16 h-16 rounded-full flex items-center justify-center 
                         ${view.color === "Red" ? "bg-red-600 text-white" : 
                           view.color === "Green" ? "bg-green-600 text-white" : 
@@ -665,9 +766,13 @@ const FleetManagementDashboard = () => {
                         <span className="text-xl">{view.letter}</span>
                       </div>
                       <div className="text-sm text-gray-500 mt-2">{view.viewType}</div>
+                      {defaultVehicles[view.color] === view.id && (
+                        <div className="absolute bottom-2 left-2 bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+                          DEFAULT
+                        </div>
+                      )}
                     </div>
                     <div className="p-3 space-y-1">
-                      <p className="text-sm"><span className="font-medium">Name:</span> {view.name}</p>
                       <p className="text-sm"><span className="font-medium">Angle:</span> {view.angle}</p>
                       <p className="text-sm"><span className="font-medium">Color:</span> {view.color}</p>
                       <p className="text-sm"><span className="font-medium">Trim:</span> {view.trim}</p>
@@ -779,19 +884,6 @@ const FleetManagementDashboard = () => {
                             ))}
                           </select>
                         </div>
-                      </div>
-
-                      {/* Name Textbox */}
-                      <div>
-                        <label htmlFor="newName" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                        <input
-                          type="text"
-                          id="newName"
-                          value={newImageName}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setNewImageName(e.target.value); setPreviewData(null);}} // Reset preview on change
-                          placeholder="e.g., Front Bumper Detail"
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        />
                       </div>
 
                       {/* Image URL and Preview Button Row */}
@@ -964,7 +1056,6 @@ const FleetManagementDashboard = () => {
                                 <div className="text-sm text-gray-500 mt-2">{view.viewType}</div>
                               </div>
                               <div className="p-3 space-y-1">
-                                <p className="text-sm"><span className="font-medium">Name:</span> {view.name}</p>
                                 <p className="text-sm"><span className="font-medium">Angle:</span> {view.angle}</p>
                                 <p className="text-sm"><span className="font-medium">Color:</span> {view.color}</p>
                                 <p className="text-sm"><span className="font-medium">Trim:</span> {view.trim}</p>
