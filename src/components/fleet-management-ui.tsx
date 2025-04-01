@@ -12,7 +12,7 @@ interface CarView {
   letter: string;
   order: number;
 }
-// --- End Interface Definition ---
+// --- End Interface Definition ----
 
 // --- Define Interface for Preview Data (Subset of CarView) ---
 interface PreviewData {
