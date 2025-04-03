@@ -283,43 +283,12 @@ const FleetManagementDashboard = () => {
 
   // --- Add Image Bank search handler ---
   const handleImageBankSearch = () => {
-    // In a real application, this would be an API call
-    // For now, we'll simulate results based on the filters
-    const results: CarView[] = [
-      {
-        id: 1001,
-        name: "Front View",
-        angle: imageBankFilters.angle || "0°",
-        color: imageBankFilters.color || "Red",
-        trim: imageBankFilters.variant || "Standard",
-        viewType: "Front View",
-        letter: "F",
-        order: 1,
-        createdDate: "01/01/2000"
-      },
-      {
-        id: 1002,
-        name: "Side View",
-        angle: imageBankFilters.angle || "90°",
-        color: imageBankFilters.color || "Red",
-        trim: imageBankFilters.variant || "Standard",
-        viewType: "Side View",
-        letter: "S",
-        order: 2,
-        createdDate: "01/01/2000"
-      },
-      {
-        id: 1003,
-        name: "Rear View",
-        angle: imageBankFilters.angle || "180°",
-        color: imageBankFilters.color || "Red",
-        trim: imageBankFilters.variant || "Standard",
-        viewType: "Rear View",
-        letter: "R",
-        order: 3,
-        createdDate: "01/01/2000"
-      }
-    ];
+    // Filter the initial car views based on color and angle
+    const results = initialCarViews.filter(view => {
+      if (imageBankFilters.color && view.color !== imageBankFilters.color) return false;
+      if (imageBankFilters.angle && view.angle !== imageBankFilters.angle) return false;
+      return true;
+    });
 
     setImageBankResults(results);
     setSelectedImageBankItems([]);
@@ -942,17 +911,26 @@ const FleetManagementDashboard = () => {
 
                     <div className="mt-4 h-48 border border-dashed border-gray-300 rounded-md flex items-center justify-center bg-gray-50">
                       {previewData ? (
-                        // Render preview similar to main list item
-                        <div className="flex flex-col items-center">
-                          <div className={`w-16 h-16 rounded-full flex items-center justify-center
-                            ${previewData.color === "Red" ? "bg-red-600 text-white" :
-                              previewData.color === "Green" ? "bg-green-600 text-white" :
-                              previewData.color === "Blue" ? "bg-blue-600 text-white" :
-                              "bg-indigo-100 text-indigo-600"}`}
-                          >
-                            <span className="text-xl">{previewData.letter}</span>
-                          </div>
-                          <div className="text-sm text-gray-500 mt-2">{previewData.viewType}</div>
+                        // Render preview with actual vehicle image
+                        <div className="w-full h-full flex items-center justify-center relative">
+                          <img 
+                            src={`/vehicles/${newImageAngle.split('°')[0]}_${newImageColor}.png`}
+                            alt={`${newImageColor} ${previewData.viewType}`}
+                            className="max-w-full max-h-full object-contain"
+                            onError={(e) => {
+                              // Fallback to a colored circle if image fails to load
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const fallback = document.createElement('div');
+                              fallback.className = `w-16 h-16 rounded-full flex items-center justify-center
+                                ${newImageColor === "Red" ? "bg-red-600 text-white" :
+                                  newImageColor === "Green" ? "bg-green-600 text-white" :
+                                  newImageColor === "Blue" ? "bg-blue-600 text-white" :
+                                  "bg-indigo-100 text-indigo-600"}`;
+                              fallback.innerHTML = `<span class="text-xl">${previewData.letter}</span>`;
+                              target.parentNode?.appendChild(fallback);
+                            }}
+                          />
                         </div>
                       ) : (
                         <p className="text-gray-400 text-sm">Preview will appear here</p>
@@ -963,52 +941,6 @@ const FleetManagementDashboard = () => {
                   {/* Image Bank Tab Content */}
                   <div className={activeTab === 'bank' ? '' : 'hidden'}>
                     <div className="flex flex-wrap gap-4 items-end">
-                      {/* Make Dropdown */}
-                      <div className="flex-1">
-                        <label htmlFor="imageBankMake" className="block text-sm font-medium text-gray-700 mb-1">Make</label>
-                        <select
-                          id="imageBankMake"
-                          value={imageBankFilters.make}
-                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleImageBankFilterChange("make", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                          {imageBankMakeOptions.map(option => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      {/* Model Dropdown */}
-                      <div className="flex-1">
-                        <label htmlFor="imageBankModel" className="block text-sm font-medium text-gray-700 mb-1">Model</label>
-                        <select
-                          id="imageBankModel"
-                          value={imageBankFilters.model}
-                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleImageBankFilterChange("model", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                          {imageBankModelOptions.map(option => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      {/* Variant Dropdown */}
-                      <div className="flex-1">
-                        <label htmlFor="imageBankVariant" className="block text-sm font-medium text-gray-700 mb-1">Variant</label>
-                        <select
-                          id="imageBankVariant"
-                          value={imageBankFilters.variant}
-                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleImageBankFilterChange("variant", e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                          <option value="">All Variants</option>
-                          {imageBankVariantOptions.map(option => (
-                            <option key={option} value={option}>{option}</option>
-                          ))}
-                        </select>
-                      </div>
-
                       {/* Color Dropdown */}
                       <div className="flex-1">
                         <label htmlFor="imageBankColor" className="block text-sm font-medium text-gray-700 mb-1">Color</label>
