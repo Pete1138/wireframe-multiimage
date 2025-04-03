@@ -69,6 +69,7 @@ const FleetManagementDashboard = () => {
   const [newImageAngle, setNewImageAngle] = useState('');
   const [newImageColor, setNewImageColor] = useState('');
   const [newImageTrim, setNewImageTrim] = useState('');
+  const [newImageYear, setNewImageYear] = useState('2023');
   const [previewData, setPreviewData] = useState<PreviewData | null>(null);
   // --- End of new state ---
 
@@ -78,16 +79,15 @@ const FleetManagementDashboard = () => {
     model: "All-New INSTER",
     variant: "",
     color: "",
-    angle: ""
+    angle: "",
+    year: ""
   });
   // --- End of Image Bank filters state ---
 
   // --- Add Image Bank options ---
-  const imageBankMakeOptions = ["Hyundai", "Kia", "Genesis"];
-  const imageBankModelOptions = ["All-New INSTER", "IONIQ 5", "IONIQ 6", "TUCSON"];
-  const imageBankVariantOptions = ["Standard", "Premium", "Luxury", "Sport"];
   const imageBankColorOptions = ["Red", "Blue", "Green", "Black", "White", "Silver"];
   const imageBankAngleOptions = ["45°", "90°", "135°", "180°", "225°", "270°", "315°"];
+  const yearOptions = ["2025", "2024", "2023", "2022", "2021", "2020"];
   // --- End of Image Bank options ---
   
   // Check if only color filter is applied
@@ -235,6 +235,7 @@ const FleetManagementDashboard = () => {
     setNewImageAngle(modalAngleOptions[0] || '');
     setNewImageColor('');
     setNewImageTrim('');
+    setNewImageYear(yearOptions[0]);
     setPreviewData(null);
   };
 
@@ -835,6 +836,21 @@ const FleetManagementDashboard = () => {
                     <div className="space-y-4">
                       {/* Angle, Color, and Trim Dropdowns Row */}
                       <div className="flex gap-4">
+                        {/* Year Dropdown */}
+                        <div className="flex-1">
+                          <label htmlFor="newYear" className="block text-sm font-medium text-gray-700 mb-1">Year of Manufacture</label>
+                          <select
+                            id="newYear"
+                            value={newImageYear}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {setNewImageYear(e.target.value); setPreviewData(null);}}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          >
+                            {yearOptions.map(option => (
+                              <option key={option} value={option}>{option}</option>
+                            ))}
+                          </select>
+                        </div>
+
                         {/* Angle Dropdown */}
                         <div className="flex-1">
                           <label htmlFor="newAngle" className="block text-sm font-medium text-gray-700 mb-1">Angle</label>
@@ -941,6 +957,22 @@ const FleetManagementDashboard = () => {
                   {/* Image Bank Tab Content */}
                   <div className={activeTab === 'bank' ? '' : 'hidden'}>
                     <div className="flex flex-wrap gap-4 items-end">
+                      {/* Year Dropdown */}
+                      <div className="flex-1">
+                        <label htmlFor="imageBankYear" className="block text-sm font-medium text-gray-700 mb-1">Year of Manufacture</label>
+                        <select
+                          id="imageBankYear"
+                          value={imageBankFilters.year}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleImageBankFilterChange("year", e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                          <option value="">All Years</option>
+                          {yearOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+
                       {/* Color Dropdown */}
                       <div className="flex-1">
                         <label htmlFor="imageBankColor" className="block text-sm font-medium text-gray-700 mb-1">Color</label>
