@@ -28,28 +28,28 @@ const FleetManagementDashboard = () => {
   // Initial car views data
   const initialCarViews: CarView[] = [
     // Red vehicles
-    { id: 1, name: "View 1", angle: "0° (Front)", color: "Red", trim: "Sport", viewType: "Front View", letter: "F", order: 1, createdDate: "01/01/2000" },
-    { id: 2, name: "View 2", angle: "90° (Side)", color: "Red", trim: "Sport", viewType: "Side View", letter: "S", order: 2, createdDate: "01/01/2000" },
-    { id: 3, name: "View 3", angle: "180° (Rear)", color: "Red", trim: "Sport", viewType: "Rear View", letter: "R", order: 3, createdDate: "01/01/2000" },
-    { id: 4, name: "View 4", angle: "Top View", color: "Red", trim: "Sport", viewType: "Top View", letter: "T", order: 4, createdDate: "01/01/2000" },
-    { id: 5, name: "View 5", angle: "45° (3/4 Front)", color: "Red", trim: "Sport", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "01/01/2000" },
-    { id: 6, name: "View 6", angle: "135° (3/4 Rear)", color: "Red", trim: "Sport", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "01/01/2000" },
+    { id: 1, name: "View 1", angle: "45°", color: "Red", trim: "Sport", viewType: "Front View", letter: "F", order: 1, createdDate: "01/01/2000" },
+    { id: 2, name: "View 2", angle: "90°", color: "Red", trim: "Sport", viewType: "Side View", letter: "S", order: 2, createdDate: "01/01/2000" },
+    { id: 3, name: "View 3", angle: "135°", color: "Red", trim: "Sport", viewType: "Rear View", letter: "R", order: 3, createdDate: "01/01/2000" },
+    { id: 4, name: "View 4", angle: "180°", color: "Red", trim: "Sport", viewType: "Rear View", letter: "R", order: 4, createdDate: "01/01/2000" },
+    { id: 5, name: "View 5", angle: "225°", color: "Red", trim: "Sport", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "01/01/2000" },
+    { id: 6, name: "View 6", angle: "270°", color: "Red", trim: "Sport", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "01/01/2000" },
     
     // Green vehicles
-    { id: 7, name: "View 1", angle: "0° (Front)", color: "Green", trim: "Luxury", viewType: "Front View", letter: "F", order: 1, createdDate: "02/02/2000" },
-    { id: 8, name: "View 2", angle: "90° (Side)", color: "Green", trim: "Luxury", viewType: "Side View", letter: "S", order: 2, createdDate: "02/02/2000" },
-    { id: 9, name: "View 3", angle: "180° (Rear)", color: "Green", trim: "Luxury", viewType: "Rear View", letter: "R", order: 3, createdDate: "02/02/2000" },
-    { id: 10, name: "View 4", angle: "Top View", color: "Green", trim: "Luxury", viewType: "Top View", letter: "T", order: 4, createdDate: "02/02/2000" },
-    { id: 11, name: "View 5", angle: "45° (3/4 Front)", color: "Green", trim: "Luxury", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "02/02/2000" },
-    { id: 12, name: "View 6", angle: "135° (3/4 Rear)", color: "Green", trim: "Luxury", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "02/02/2000" },
+    { id: 7, name: "View 1", angle: "45°", color: "Green", trim: "Luxury", viewType: "Front View", letter: "F", order: 1, createdDate: "02/02/2000" },
+    { id: 8, name: "View 2", angle: "90°", color: "Green", trim: "Luxury", viewType: "Side View", letter: "S", order: 2, createdDate: "02/02/2000" },
+    { id: 9, name: "View 3", angle: "135°", color: "Green", trim: "Luxury", viewType: "Rear View", letter: "R", order: 3, createdDate: "02/02/2000" },
+    { id: 10, name: "View 4", angle: "180°", color: "Green", trim: "Luxury", viewType: "Rear View", letter: "R", order: 4, createdDate: "02/02/2000" },
+    { id: 11, name: "View 5", angle: "225°", color: "Green", trim: "Luxury", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "02/02/2000" },
+    { id: 12, name: "View 6", angle: "270°", color: "Green", trim: "Luxury", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "02/02/2000" },
     
     // Blue vehicles
-    { id: 13, name: "View 1", angle: "0° (Front)", color: "Blue", trim: "Premium", viewType: "Front View", letter: "F", order: 1, createdDate: "03/03/2000" },
-    { id: 14, name: "View 2", angle: "90° (Side)", color: "Blue", trim: "Premium", viewType: "Side View", letter: "S", order: 2, createdDate: "03/03/2000" },
-    { id: 15, name: "View 3", angle: "180° (Rear)", color: "Blue", trim: "Premium", viewType: "Rear View", letter: "R", order: 3, createdDate: "03/03/2000" },
-    { id: 16, name: "View 4", angle: "Top View", color: "Blue", trim: "Premium", viewType: "Top View", letter: "T", order: 4, createdDate: "03/03/2000" },
-    { id: 17, name: "View 5", angle: "45° (3/4 Front)", color: "Blue", trim: "Premium", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "03/03/2000" },
-    { id: 18, name: "View 6", angle: "135° (3/4 Rear)", color: "Blue", trim: "Premium", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "03/03/2000" }
+    { id: 13, name: "View 1", angle: "45°", color: "Blue", trim: "Premium", viewType: "Front View", letter: "F", order: 1, createdDate: "03/03/2000" },
+    { id: 14, name: "View 2", angle: "90°", color: "Blue", trim: "Premium", viewType: "Side View", letter: "S", order: 2, createdDate: "03/03/2000" },
+    { id: 15, name: "View 3", angle: "135°", color: "Blue", trim: "Premium", viewType: "Rear View", letter: "R", order: 3, createdDate: "03/03/2000" },
+    { id: 16, name: "View 4", angle: "180°", color: "Blue", trim: "Premium", viewType: "Rear View", letter: "R", order: 4, createdDate: "03/03/2000" },
+    { id: 17, name: "View 5", angle: "225°", color: "Blue", trim: "Premium", viewType: "3/4 Front View", letter: "3F", order: 5, createdDate: "03/03/2000" },
+    { id: 18, name: "View 6", angle: "270°", color: "Blue", trim: "Premium", viewType: "3/4 Rear View", letter: "3R", order: 6, createdDate: "03/03/2000" }
   ];
 
   // State declarations
@@ -87,7 +87,7 @@ const FleetManagementDashboard = () => {
   const imageBankModelOptions = ["All-New INSTER", "IONIQ 5", "IONIQ 6", "TUCSON"];
   const imageBankVariantOptions = ["Standard", "Premium", "Luxury", "Sport"];
   const imageBankColorOptions = ["Red", "Blue", "Green", "Black", "White", "Silver"];
-  const imageBankAngleOptions = ["0° (Front)", "45° (3/4 Front)", "90° (Side)", "135° (3/4 Rear)", "180° (Rear)", "Top View"];
+  const imageBankAngleOptions = ["45°", "90°", "135°", "180°", "225°", "270°", "315°"];
   // --- End of Image Bank options ---
   
   // Check if only color filter is applied
@@ -289,7 +289,7 @@ const FleetManagementDashboard = () => {
       {
         id: 1001,
         name: "Front View",
-        angle: imageBankFilters.angle || "0° (Front)",
+        angle: imageBankFilters.angle || "0°",
         color: imageBankFilters.color || "Red",
         trim: imageBankFilters.variant || "Standard",
         viewType: "Front View",
@@ -300,7 +300,7 @@ const FleetManagementDashboard = () => {
       {
         id: 1002,
         name: "Side View",
-        angle: imageBankFilters.angle || "90° (Side)",
+        angle: imageBankFilters.angle || "90°",
         color: imageBankFilters.color || "Red",
         trim: imageBankFilters.variant || "Standard",
         viewType: "Side View",
@@ -311,7 +311,7 @@ const FleetManagementDashboard = () => {
       {
         id: 1003,
         name: "Rear View",
-        angle: imageBankFilters.angle || "180° (Rear)",
+        angle: imageBankFilters.angle || "180°",
         color: imageBankFilters.color || "Red",
         trim: imageBankFilters.variant || "Standard",
         viewType: "Rear View",
@@ -734,48 +734,76 @@ const FleetManagementDashboard = () => {
                 {filteredCarViews.map((view) => (
                   <div 
                     key={view.id}
-                    className={`border rounded-md overflow-hidden w-64 relative cursor-pointer transition-all ${
+                    className={`border rounded-md overflow-hidden w-64 relative transition-all ${
                       selectedViews.includes(view.id) ? 'border-indigo-600 shadow-md' : 'hover:border-gray-300'
                     } ${isColorFilterOnly ? 'cursor-move' : ''}`}
-                    onClick={() => toggleViewSelection(view.id)}
                     draggable={isColorFilterOnly}
                     onDragStart={(e) => handleDragStart(e, view)}
                     onDragOver={(e) => handleDragOver(e, view)}
                     onDrop={(e) => handleDrop(e, view)}
                     onDragEnd={handleDragEnd}
                   >
+                    {/* Checkbox */}
+                    <div 
+                      className="absolute top-2 right-2 z-10 w-6 h-6 border-2 rounded-md flex items-center justify-center cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleViewSelection(view.id);
+                      }}
+                    >
+                      {selectedViews.includes(view.id) ? (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : null}
+                    </div>
+
                     {/* Order Number */}
                     <div className="absolute top-2 left-2 z-10 w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-medium">{view.order}</span>
                     </div>
                     
-                    {selectedViews.includes(view.id) && (
-                      <div className="absolute top-2 right-2 z-10 w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 6L9 17L4 12" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                    <div className="h-40 bg-gray-100 flex flex-col items-center justify-center">
+                      <div className="w-full h-full flex items-center justify-center relative">
+                        <img 
+                          src={`/vehicles/${view.angle.split('°')[0]}_${view.color}.png`}
+                          alt={`${view.color} ${view.viewType}`}
+                          className="max-w-full max-h-full object-contain"
+                          onError={(e) => {
+                            // Fallback to a colored circle if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = document.createElement('div');
+                            fallback.className = `w-16 h-16 rounded-full flex items-center justify-center 
+                              ${view.color === "Red" ? "bg-red-600 text-white" : 
+                                view.color === "Green" ? "bg-green-600 text-white" : 
+                                view.color === "Blue" ? "bg-blue-600 text-white" : 
+                                "bg-indigo-100 text-indigo-600"}`;
+                            fallback.innerHTML = `<span class="text-xl">${view.letter}</span>`;
+                            target.parentNode?.appendChild(fallback);
+                          }}
+                        />
+                        {defaultVehicles[view.color] === view.id && (
+                          <div className="absolute bottom-2 left-2 bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+                            DEFAULT
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <div className="h-40 bg-gray-100 flex flex-col items-center justify-center relative">
-                      <div className={`w-16 h-16 rounded-full flex items-center justify-center 
-                        ${view.color === "Red" ? "bg-red-600 text-white" : 
-                          view.color === "Green" ? "bg-green-600 text-white" : 
-                          view.color === "Blue" ? "bg-blue-600 text-white" : 
-                          "bg-indigo-100 text-indigo-600"}`}
-                      >
-                        <span className="text-xl">{view.letter}</span>
-                      </div>
-                      <div className="text-sm text-gray-500 mt-2">{view.viewType}</div>
-                      {defaultVehicles[view.color] === view.id && (
-                        <div className="absolute bottom-2 left-2 bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
-                          DEFAULT
-                        </div>
-                      )}
                     </div>
-                    <div className="p-3 space-y-1">
-                      <p className="text-sm"><span className="font-medium">Angle:</span> {view.angle}</p>
-                      <p className="text-sm"><span className="font-medium">Color:</span> {view.color}</p>
-                      <p className="text-sm"><span className="font-medium">Trim:</span> {view.trim}</p>
+                    <div className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className={`w-3 h-3 rounded-full ${
+                            view.color === "Red" ? "bg-red-600" : 
+                            view.color === "Green" ? "bg-green-600" : 
+                            view.color === "Blue" ? "bg-blue-600" : 
+                            "bg-indigo-100"
+                          }`}></div>
+                          <div className="text-sm font-medium">{view.color}</div>
+                        </div>
+                        <div className="text-sm text-gray-500 mt-1">Angle: <span className="text-gray-500">{view.angle}</span></div>  
+                      </div>
+                      <div className="text-sm text-gray-500">Trim: <span className="text-gray-500">{view.trim}</span></div>
                     </div>
                   </div>
                 ))}
@@ -1045,15 +1073,26 @@ const FleetManagementDashboard = () => {
                                 </div>
                               )}
                               <div className="h-40 bg-gray-100 flex flex-col items-center justify-center">
-                                <div className={`w-16 h-16 rounded-full flex items-center justify-center 
-                                  ${view.color === "Red" ? "bg-red-600 text-white" : 
-                                    view.color === "Green" ? "bg-green-600 text-white" : 
-                                    view.color === "Blue" ? "bg-blue-600 text-white" : 
-                                    "bg-indigo-100 text-indigo-600"}`}
-                                >
-                                  <span className="text-xl">{view.letter}</span>
+                                <div className="w-full h-full flex items-center justify-center">
+                                  <img 
+                                    src={`/vehicles/${view.angle.split('°')[0]}_${view.color}.png`}
+                                    alt={`${view.color} ${view.viewType}`}
+                                    className="max-w-full max-h-full object-contain"
+                                    onError={(e) => {
+                                      // Fallback to a colored circle if image fails to load
+                                      const target = e.target as HTMLImageElement;
+                                      target.style.display = 'none';
+                                      const fallback = document.createElement('div');
+                                      fallback.className = `w-16 h-16 rounded-full flex items-center justify-center 
+                                        ${view.color === "Red" ? "bg-red-600 text-white" : 
+                                          view.color === "Green" ? "bg-green-600 text-white" : 
+                                          view.color === "Blue" ? "bg-blue-600 text-white" : 
+                                          "bg-indigo-100 text-indigo-600"}`;
+                                      fallback.innerHTML = `<span class="text-xl">${view.letter}</span>`;
+                                      target.parentNode?.appendChild(fallback);
+                                    }}
+                                  />
                                 </div>
-                                <div className="text-sm text-gray-500 mt-2">{view.viewType}</div>
                               </div>
                               <div className="p-3 space-y-1">
                                 <p className="text-sm"><span className="font-medium">Angle:</span> {view.angle}</p>
